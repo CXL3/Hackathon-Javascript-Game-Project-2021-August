@@ -3,8 +3,15 @@ import React from 'react';
 
 function Board(props) {
     return (
-        <h1> Board </h1>
+        <div>
+           <canvas
+                id="board"
+                width="1000"
+                height="580"
+
+            />
+        </div>
     );
 }
 
-export default Board;   
+export default Board;
