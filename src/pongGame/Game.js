@@ -11,11 +11,12 @@ const Game = props => {
   const PScore=0;
   const CScore=0;
 
-  const draw = ctx => {
+  const draw = (ctx,frameCount) => {
     // added a ball
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
     ctx.fillStyle = '#ffffff'
     ctx.beginPath()
-    ctx.arc(ballX, ballY, 5, 0, 2*Math.PI)
+    ctx.arc(ballX, ballY, 20*Math.sin(frameCount*0.05)**2, 0, 2*Math.PI)
     ctx.fill()
     
     //Player Paddle 
@@ -47,8 +48,19 @@ const Game = props => {
   useEffect(() => {
     const canvas = canvasRef.current
     const context = canvas.getContext('2d')
-    //Our first draw
-    draw(context)
+    let frameCount = 0
+    let animationFrameId
+
+    const render = () => {
+      frameCount++
+      draw(context, frameCount)
+      animationFrameId = window.requestAnimationFrame(render)
+    }
+    render()
+    
+    return () => {
+      window.cancelAnimationFrame(animationFrameId)
+    }
   }, [draw])
 
   return (
@@ -58,6 +70,7 @@ const Game = props => {
         id="board"
         width="500"
         height="700"
+        {...props}
       />
     </div>
   );
