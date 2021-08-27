@@ -4,22 +4,28 @@ import React, { useEffect, useRef } from "react";
 const Game = props => {
   //To get Canvas DOM element, use useRef
   const canvasRef = useRef(null)
+  const ballX = 100;
+  const ballY = 100;
+  const Ppaddle=225;
+  const Cpaddle=225;
+  const PScore=0;
+  const CScore=0;
 
   const draw = ctx => {
     // added a ball
     ctx.fillStyle = '#ffffff'
     ctx.beginPath()
-    ctx.arc(50, 100, 5, 0, 2*Math.PI)
+    ctx.arc(ballX, ballY, 5, 0, 2*Math.PI)
     ctx.fill()
     
     //Player Paddle 
     ctx.fillStyle = '#ffffff'
-    ctx.fillRect(225, 670, 50, 6)
+    ctx.fillRect(Ppaddle, 670, 50, 6)
     ctx.fill()
 
     //Computer Paddle 
     ctx.fillStyle = '#ffffff'
-    ctx.fillRect(225, 30, 50, 6)
+    ctx.fillRect(Cpaddle, 30, 50, 6)
     ctx.fill()
 
     //Center Line
@@ -32,8 +38,8 @@ const Game = props => {
 
     //Score board
     ctx.font = "25px Arial";
-    ctx. fillText(0, 15, 400);
-    ctx. fillText(0, 15, 320);
+    ctx. fillText(PScore, 15, 400);
+    ctx. fillText(CScore, 15, 320);
 
   }
 
