@@ -14,13 +14,26 @@ const Game = props => {
     
     //Player Paddle 
     ctx.fillStyle = '#ffffff'
-    ctx.fillRect(100, 670, 50, 6)
+    ctx.fillRect(225, 670, 50, 6)
     ctx.fill()
 
     //Computer Paddle 
     ctx.fillStyle = '#ffffff'
-    ctx.fillRect(100, 30, 50, 6)
+    ctx.fillRect(225, 30, 50, 6)
     ctx.fill()
+
+    //Center Line
+    ctx.beginPath();
+    ctx.setLineDash([4]);
+    ctx.moveTo(0, 350);
+    ctx.lineTo(500, 350);
+    ctx.strokeStyle = "grey";
+    ctx.stroke();
+
+    //Score board
+    ctx.font = "25px Arial";
+    ctx. fillText(0, 15, 400);
+    ctx. fillText(0, 15, 320);
 
   }
 
