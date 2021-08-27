@@ -22,6 +22,8 @@ font-family: "Lobster", cursive;
 #board{
   background-color: black;
   border-radius: 30px;
-  margin-left: 5%;
+  margin: auto;
+  margin-bottom: 30px;
+  display: block;
 }
 

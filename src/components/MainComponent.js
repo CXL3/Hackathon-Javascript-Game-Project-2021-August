@@ -3,10 +3,10 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import Header from './HeaderComponent';
 import Home from './HomeComponent';
 import LandingPage from './LandingPageComponent';
-import Game from '../breakoutGame/Game';
+import Game from '../pongGame/Game';
 
 
-function Main(props) {
+function Main() {
     return (
         <div>
         <Header />
