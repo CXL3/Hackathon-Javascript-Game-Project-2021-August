@@ -1,32 +1,43 @@
-import React, { useEffect, useRef } from "react";
+import React, { Component } from "react";
+import { Button } from "reactstrap";
+
+class Game extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+       ballX : 100,
+       ballY : 100,
+       Ppaddle:225,
+       Cpaddle:225,
+       PScore:0,
+       CScore:0,
+    };
+  }  
+  componentDidMount() {
+    this.start();
+}
+
+  start() {
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
 
 
-const Game = props => {
-  //To get Canvas DOM element, use useRef
-  const canvasRef = useRef(null)
-  const ballX = 100;
-  const ballY = 100;
-  const Ppaddle=225;
-  const Cpaddle=225;
-  const PScore=0;
-  const CScore=0;
-
-  const draw = (ctx,frameCount) => {
     // added a ball
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
     ctx.fillStyle = '#ffffff'
     ctx.beginPath()
-    ctx.arc(ballX, ballY, 20*Math.sin(frameCount*0.05)**2, 0, 2*Math.PI)
+    ctx.arc(this.state.ballX, this.state.ballY, 5, 0, 2*Math.PI)
     ctx.fill()
-    
+
     //Player Paddle 
     ctx.fillStyle = '#ffffff'
-    ctx.fillRect(Ppaddle, 670, 50, 6)
+    ctx.fillRect(this.state.Ppaddle, 670, 50, 6)
     ctx.fill()
 
     //Computer Paddle 
     ctx.fillStyle = '#ffffff'
-    ctx.fillRect(Cpaddle, 30, 50, 6)
+    ctx.fillRect(this.state.Cpaddle, 30, 50, 6)
     ctx.fill()
 
     //Center Line
@@ -39,42 +50,22 @@ const Game = props => {
 
     //Score board
     ctx.font = "25px Arial";
-    ctx. fillText(PScore, 15, 400);
-    ctx. fillText(CScore, 15, 320);
+    ctx. fillText(this.state.PScore, 15, 400);
+    ctx. fillText(this.state.CScore, 15, 320);
 
   }
 
-  //this is to  get the context, useEffect let us call the functions right after  the component did mount
-  useEffect(() => {
-    const canvas = canvasRef.current
-    const context = canvas.getContext('2d')
-    let frameCount = 0
-    let animationFrameId
 
-    const render = () => {
-      frameCount++
-      draw(context, frameCount)
-      animationFrameId = window.requestAnimationFrame(render)
-    }
-    render()
-    
-    return () => {
-      window.cancelAnimationFrame(animationFrameId)
-    }
-  }, [draw])
 
-  return (
-    <div>
-      <canvas
-        ref={canvasRef}
-        id="board"
-        width="500"
-        height="700"
-        {...props}
-      />
-    </div>
-  );
-
+  render() {
+    return (
+      <div>
+        <Button id="gameStartButton" > Start the game </Button>
+        
+        <canvas id ="canvas" width="500" height="700"/>
+      </div>
+      
+    );
+  }
 }
-
 export default Game;   

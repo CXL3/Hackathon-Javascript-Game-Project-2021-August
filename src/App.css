@@ -11,7 +11,7 @@ font-family: "Lobster", cursive;
 
 .jumbotron {
   margin: 0;
-  padding: 30px;
+  padding: 25px;
   background-image: linear-gradient(to right, #fc4a1a, #f7b733);
   color: white;
   
@@ -19,7 +19,7 @@ font-family: "Lobster", cursive;
 .jumbotron h2 {
   color: #f1dede;
 }
-#board{
+#canvas{
   background-color: black;
   border-radius: 30px;
   margin: auto;
@@ -27,3 +27,8 @@ font-family: "Lobster", cursive;
   display: block;
 }
 
+#gameStartButton{
+  margin: auto;
+  margin-bottom: 20px;
+  display: block;
+}
